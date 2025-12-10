@@ -1,0 +1,621 @@
+/* ===========================================
+   VARIABLES Y RESET
+   =========================================== */
+:root {
+  --color-text: #272425;
+  --color-accent: #bf883b;
+  --color-info: #f1c8cb;
+  --color-secondary: #9cad8c;
+  --color-background: #ffffff;
+  --font-primary: 'Open Sauce One', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-secondary: 'Open Sans', -apple_system, BlinkMacSystemFont, sans-serif;
+  --transition: all 0.3s ease;
+  --border-radius: 8px;
+  --box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  --box-shadow-hover: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+/* ===========================================
+   SECCIÓN DE SERVICIOS
+   =========================================== */
+.services-section {
+  padding: 4rem 1rem;
+  background-color: var(--color-background);
+  position: relative;
+  overflow: hidden;
+}
+
+.services-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* ===========================================
+   ENCABEZADO
+   =========================================== */
+.services-header {
+  text-align: center;
+  margin-bottom: 3rem;
+  position: relative;
+}
+
+.section-title {
+  font-family: var(--font-primary);
+  font-size: 2.5rem;
+  color: var(--color-text);
+  margin-bottom: 1rem;
+  position: relative;
+  display: inline-block;
+}
+
+.section-title::after {
+  content: '';
+  position: absolute;
+  width: 60px;
+  height: 3px;
+  background-color: var(--color-accent);
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.section-subtitle {
+  font-family: var(--font-secondary);
+  font-size: 1.2rem;
+  color: var(--color-text);
+  max-width: 700px;
+  margin: 0 auto;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+/* ===========================================
+   GRID DE SERVICIOS
+   =========================================== */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  padding: 1rem 0;
+}
+
+/* ===========================================
+   TARJETAS DE SERVICIO
+   =========================================== */
+.service-card {
+  background: white;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--box-shadow);
+  transition: var(--transition);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  position: relative;
+}
+
+.service-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--box-shadow-hover);
+}
+
+.service-card.active {
+  border: 2px solid var(--color-accent);
+  box-shadow: 0 0 0 4px rgba(191, 136, 59, 0.2);
+}
+
+.service-card-content {
+  padding: 2rem; /* 32px */
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.service-icon {
+  font-size: 2.8rem;
+  color: var(--color-accent);
+  margin-bottom: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.service-card:hover .service-icon {
+  transform: scale(1.1);
+}
+
+.service-title {
+  font-family: var(--font-primary);
+  color: var(--color-text);
+  margin: 0 0 0.5rem !important;
+  padding: 0;
+  font-size: 1.5rem;
+  line-height: 1.3;
+}
+
+.service-description {
+  color: var(--color-text);
+  margin: 0 !important;
+  padding: 0 0 1.5rem 0 !important;
+  line-height: 1.5 !important;
+  opacity: 0.9;
+  flex-grow: 1;
+}
+
+.service-description p {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.service-button {
+  background-color: var(--color-accent);
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 50px;
+  font-family: var(--font-secondary);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+  width: 100%;
+  text-align: center;
+}
+
+.service-button:hover {
+  background-color: var(--color-text);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* ===========================================
+   MODAL
+   =========================================== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.modal-container {
+  background: white;
+  border-radius: var(--border-radius);
+  max-width: 800px;
+  width: 90%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  transform: translateY(20px);
+  transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-container {
+  transform: translateY(0);
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--color-text);
+  transition: var(--transition);
+  padding: 0.5rem;
+  line-height: 1;
+  z-index: 2;
+}
+
+.modal-close:hover {
+  color: var(--color-accent);
+  transform: rotate(90deg);
+}
+
+.modal-content {
+  padding: 2rem;
+  position: relative;
+}
+
+.modal-header {
+  margin: 0 !important;
+  padding: 0 !important;
+  line-height: 1 !important;
+}
+
+.modal-category {
+  display: inline-block;
+  background-color: var(--color-info);
+  color: var(--color-text);
+  padding: 0.3rem 1rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.modal-title {
+  font-family: var(--font-primary);
+  color: var(--color-text);
+  margin: 0 0 0.5rem 0 !important;
+  padding: 0 !important;
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+.modal-description {
+  color: var(--color-text);
+  margin: 0 0 1.5rem 0 !important;
+  padding: 0 !important;
+  line-height: 1.6;
+  opacity: 0.9;
+}
+
+.modal-features {
+  margin: 1.5rem 0;
+}
+
+.modal-features h4 {
+  font-family: var(--font-primary);
+  color: var(--color-text);
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+}
+
+.modal-features ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.modal-features li {
+  margin-bottom: 0.8rem;
+  display: flex;
+  align-items: center;
+  color: var(--color-text);
+  opacity: 0.9;
+  font-family: var(--font-secondary);
+}
+
+.feature-icon {
+  color: var(--color-accent);
+  margin-right: 0.8rem;
+  font-size: 0.9rem;
+  min-width: 20px;
+  text-align: center;
+}
+
+/* ===========================================
+   BOTÓN DE WHATSAPP
+   =========================================== */
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  padding: 1.5rem 0 0;
+  position: relative;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Botón de WhatsApp redondo */
+.whatsapp-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;                     /* Tamaño del botón */
+  height: 50px;                    /* Mismo ancho que alto para hacerlo redondo */
+  background-color: #25D366;       /* Verde de WhatsApp */
+  color: white;
+  border: none;
+  border-radius: 50%;              /* Hace que el botón sea redondo */
+  padding: 0;                      /* Quitamos el padding */
+  font-size: 1.8rem;               /* Tamaño del ícono */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+  position: relative;              /* Para posicionamiento absoluto del ícono */
+}
+
+/* Ocultamos el texto del botón */
+.whatsapp-button span {
+  display: none;
+}
+
+.whatsapp-button:hover {
+  background-color: #128C7E;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+/* Ajustamos el tamaño del ícono */
+.whatsapp-button svg {
+  margin: 0;                       /* Quitamos el margen derecho */
+  font-size: 1.8rem;               /* Tamaño del ícono */
+}
+
+/* ===========================================
+   ANIMACIONES
+   =========================================== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.services-grid {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.service-card {
+  animation: slideUp 0.5s ease-out;
+  animation-fill-mode: both;
+}
+
+.service-card:nth-child(1) { animation-delay: 0.1s; }
+.service-card:nth-child(2) { animation-delay: 0.2s; }
+.service-card:nth-child(3) { animation-delay: 0.3s; }
+.service-card:nth-child(4) { animation-delay: 0.4s; }
+.service-card:nth-child(5) { animation-delay: 0.5s; }
+.service-card:nth-child(6) { animation-delay: 0.6s; }
+
+/* ===========================================
+   RESPONSIVE
+   =========================================== */
+@media (max-width: 992px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2rem;
+  }
+  
+  .section-subtitle {
+    font-size: 1rem;
+  }
+  
+  .services-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .service-card-content {
+    padding: 1.5rem;
+  }
+  
+  .service-icon {
+    font-size: 2.5rem;
+  }
+  
+  .modal-content {
+    padding: 1.5rem;
+  }
+  
+  .modal-title {
+    font-size: 1.7rem;
+  }
+
+  .whatsapp-button {
+    width: 45px;
+    height: 45px;
+    font-size: 1.5rem;
+    padding: 0;
+  }
+
+  .whatsapp-button svg {
+    font-size: 1.5rem;
+    margin: 0;
+  }
+
+  .modal-actions {
+    margin-top: 1.5rem;
+    padding: 1.2rem 0 0;
+  }
+}
+
+/* Añade esto al final de tu archivo CSS, después de los estilos existentes */
+
+/* ===========================================
+   CARRUSEL MEJORADO PARA MÓVILES
+   =========================================== */
+@media (max-width: 768px) {
+  .services-container {
+    position: relative;
+    padding: 2rem 0;
+    width: 100%;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+
+  .services-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scroll-behavior: smooth;
+    gap: 2rem;
+    padding: 2rem 0;
+    margin: 0;
+    scroll-padding: 0 2rem;
+    position: relative;
+    width: 100%;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+
+  .services-grid::-webkit-scrollbar {
+    display: none;  /* Hide scrollbar for Chrome, Safari and Opera */
+  }
+
+  .service-card {
+    flex: 0 0 calc(100% - 4rem);  /* Ajustamos el ancho para compensar el gap */
+    scroll-snap-align: center;
+    margin: 0 auto;  /* Centrado horizontal */
+    animation: none;
+    min-width: 0;
+    position: relative;
+    transition: transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    padding: 0 2rem;
+    box-sizing: border-box;
+  }
+
+  .service-card:active {
+    transform: scale(0.98);
+  }
+
+  /* Flechas de navegación */
+  .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    background: white;
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 10;
+    opacity: 1;
+    transition: all 0.3s ease;
+    font-size: 1.2rem;
+    color: var(--color-text);
+  }
+
+  .carousel-arrow:hover {
+    background: var(--color-accent);
+    color: white;
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .carousel-arrow.prev {
+    left: 10px;
+  }
+
+  .carousel-arrow.next {
+    right: 10px;
+  }
+
+  .carousel-arrow::before {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-top: 2px solid var(--color-text);
+    border-right: 2px solid var(--color-text);
+  }
+
+  .carousel-arrow.prev::before {
+    transform: rotate(-135deg);
+    margin-right: 3px;
+  }
+
+  .carousel-arrow.next::before {
+    transform: rotate(45deg);
+    margin-left: 3px;
+  }
+
+  /* Indicadores de posición */
+  .carousel-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 1.5rem;
+    padding: 0.5rem 1rem;
+    position: relative;
+    z-index: 5;
+  }
+
+  .carousel-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background-color: #ddd;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .carousel-indicator.active {
+    background-color: var(--color-accent);
+    transform: scale(1.3);
+  }
+
+  /* Mejoras de accesibilidad */
+  .services-grid:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  /* Efecto de arrastre */
+  .services-grid.dragging {
+    scroll-snap-type: none;
+    cursor: grabbing;
+    user-select: none;
+  }
+
+  /* Ocultar scrollbar */
+  .services-grid::-webkit-scrollbar {
+    display: none;
+  }
+
+  .services-grid {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Ajustes para el modal en móviles */
+  .modal-container {
+    width: 95%;
+    margin: 1rem;
+    max-height: 90vh;
+  }
+
+  .modal-content {
+    padding: 1.5rem;
+  }
+
+  .modal-title {
+    font-size: 1.5rem;
+  }
+
+  .whatsapp-button {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+  }
+}

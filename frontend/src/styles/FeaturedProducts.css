@@ -1,0 +1,14 @@
+.featured-products {
+  padding: 2rem 0;
+  background-color: #9cad8c;  /* Fondo rosa claro */
+  /* O para un degradado sutil: */
+  /* background: linear-gradient(to bottom, #ffffff, #ffebf3, #ffffff); */
+}
+
+.section-divider {
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--color-accent), transparent);
+  margin: 4rem auto;
+  width: 80%;
+  max-width: 800px;
+}

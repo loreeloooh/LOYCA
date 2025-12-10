@@ -1,0 +1,232 @@
+/* Variables globales */
+:root {
+  --color-primary: #E1306C;
+  --color-text: #333;
+  --color-text-light: #666;
+  --color-bg: #fff;
+  --color-shadow: rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+  --border-radius: 4px;
+  --font-primary: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Reset y estilos base */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* Navbar principal */
+.navbar {
+  background-color: white;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 1rem 0;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo */
+.logo {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #333;
+  text-decoration: none;
+  z-index: 1001;
+  padding: 0.5rem 0;
+}
+
+/* Menú Hamburguesa */
+.hamburger-button {
+  display: none;
+  background: none;
+  border: 2px solid transparent;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1001;
+  transition: var(--transition);
+}
+
+.hamburger-button:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(225, 48, 108, 0.3);
+}
+
+.hamburger-button:hover {
+  opacity: 0.8;
+}
+
+/* Navegación para Desktop */
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.nav-link {
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  padding: 0.5rem 0.75rem;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #E1306C;
+}
+
+/* Botón */
+.btn {
+  background-color: var(--color-primary);
+  color: white !important;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--border-radius);
+  border: 2px solid transparent;
+  cursor: pointer;
+  font-weight: 500;
+  text-decoration: none;
+  transition: var(--transition);
+  white-space: nowrap;
+  font-family: var(--font-primary);
+  font-size: 1rem;
+}
+
+.btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(225, 48, 108, 0.3);
+}
+
+.btn:focus {
+  outline: none;
+  border-color: white;
+  box-shadow: 0 0 0 2px var(--color-primary);
+}
+
+.btn:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Versión Móvil */
+/* Estilos para móviles */
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  /* Menú Hamburguesa visible en móviles */
+  .hamburger-button {
+    display: block;
+  }
+
+  /* Menú desplegable */
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 80%;
+    max-width: 300px;
+    height: 100vh;
+    background-color: white;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 6rem 1.5rem 2rem;
+    box-shadow: -5px 0 15px rgba(0, 0, 0, 0.1);
+    transition: right 0.3s ease-in-out;
+    z-index: 1000;
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  /* Estilos para los enlaces en móvil */
+  .nav-links .nav-link,
+  .user-section {
+    width: 100%;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #f0f0f0;
+    text-align: left;
+    margin: 0;
+  }
+
+  /* Sección de usuario en móvil */
+  .user-section {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 2px solid #f0f0f0;
+  }
+
+  .welcome-text {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+  }
+
+  /* Overlay para el fondo oscuro */
+  .nav-links::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    pointer-events: none;
+  }
+
+  .nav-links.active::before {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
+/* Versión Desktop */
+@media (min-width: 769px) {
+  .hamburger-button {
+    display: none; /* Asegura que el botón hamburguesa no se muestre en desktop */
+  }
+
+  .nav-links {
+    position: static;
+    flex-direction: row;
+    width: auto;
+    height: auto;
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
+    transform: none;
+    opacity: 1;
+    pointer-events: auto;
+    gap: 1.5rem;
+  }
+
+  .welcome-text {
+    color: #333;
+    font-size: 0.9rem;
+  }
+}

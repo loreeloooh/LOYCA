@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://loyca.com.ar/sitemap.xml

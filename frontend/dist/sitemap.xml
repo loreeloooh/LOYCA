@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Declaración del documento XML y codificación de caracteres -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Inicio del conjunto de URLs - versión del protocolo sitemap -->
+  
+  <url>
+    <!-- Inicio de la primera URL del sitio -->
+    <loc>https://loyca.com.ar/</loc>  <!-- URL completa de la página principal -->
+    <changefreq>daily</changefreq>    <!-- Frecuencia de actualización: diaria -->
+    <priority>1.0</priority>          <!-- Prioridad máxima (1.0) en el índice de Google -->
+  </url>
+
+  <url>
+    <!-- Segunda URL importante del sitio -->
+    <loc>https://loyca.com.ar/enlaces</loc>  <!-- URL de la sección de enlaces -->
+    <changefreq>weekly</changefreq>          <!-- Se actualiza semanalmente -->
+    <priority>0.8</priority>                 <!-- Alta prioridad, pero menor que la home -->
+  </url>
+  
+</urlset>
